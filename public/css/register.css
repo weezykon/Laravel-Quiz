@@ -1,0 +1,69 @@
+/* Box Sizing border box */
+*, *:before, *:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    font-weight: 100;
+	margin: 0;
+    background: #ededed;
+    height: 100vh;
+}
+a{
+    text-decoration: none;
+}
+.container{
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    justify-items: center;
+    align-items: center;
+}
+h3,h2,h3{
+    font-size: 25px;
+    font-weight: 100;
+    line-height: 40px;
+	color: #999;
+}
+.register-div{
+    width: 430px;
+    min-height:400px;
+    background: #fff;
+    border-radius: 10px;
+    border: 2px solid #ededed;
+    padding: 30px 50px;
+    text-align: center;
+    box-shadow: 0px 0px 10px #ddd;
+}
+.form-group{
+    margin: 20px 0px;
+}
+.form-control{
+    width:250px;
+    border:none;
+    border-bottom: 2px dashed #ccc;
+    height: 40px;
+}
+.form-control::placeholder{
+    color:#cdcdcd;
+}
+.btn-green{
+    border: none;
+    width: 250px;
+    height: 35px;
+    background: lightseagreen;
+    color: #fff;
+}
+.forgot{
+    font-size: 10px;
+    font-weight: 100;
+    margin-top: 40px;
+    color: lightseagreen;
+    text-transform: uppercase;
+}
+select{
+    border: none !important;
+}
