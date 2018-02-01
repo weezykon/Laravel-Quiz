@@ -14,10 +14,7 @@
                     {{ csrf_field() }}
                     <h3>Register</h3>
                     <div class="form-group">
-                        <input placeholder="Firstname" name="firstname" type="text" class="form-control" required="">
-                    </div>
-                    <div class="form-group">
-                        <input placeholder="Lastname" name="lastname" type="text" class="form-control" required="">
+                        <input placeholder="Fullname" name="name" type="text" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <input placeholder="Username" name="username" type="text" oninput="duplicateUsername(this)" class="form-control" required="">

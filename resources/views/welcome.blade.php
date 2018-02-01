@@ -1,95 +1,70 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
+@extends ('layouts')
+@section('home')
+    <div class="row" style="padding:10vh;">
+        <div class="col-md-4">
+            <form action="/adduser" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <input placeholder="Fullname" name="name" type="text" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <input placeholder="Username" name="username" type="text" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <input placeholder="Email" name="email" type="email" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <input placeholder="Password" name="password" type="password" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <input name="file" type="file" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="gender" required="">
+                        <option value="">Choose Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Add User</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            @if(count($users))	
+                <div class="panel-body" style="padding:0px">
+                    <div class="table-responsive dropsection">
+                        <table id="table-ext-3" class="table table-striped table-bordered table-hover">
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <!-- <th>Action</th> -->
+                            </tr>
+                            @foreach($users as $user)
+                                <tr>
+                                    <td><img src="/images/{{$user->avatar}}" alt="{{$user->username}}" class="avatar"></a></td>
+                                    <td>{{ $user->firstname }} {{ $user->lastname }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <!-- <td></td> -->
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            @else
+                <div class="panel-body" style="padding:10vh 0">
+                    <h3 class="text-center" style="color:#ddd"> You Haven't Added Any User.</h3>
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
-    </body>
-</html>
+    </div>
+@endsection('home')
+@section('footer')
+    <script type="text/javascript">
+        @if ($flash = session('message'))
+            toastr.info("{{$flash}}");
+        @endif
+    </script>
+@endsection('footer')

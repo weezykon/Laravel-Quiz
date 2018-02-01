@@ -25,8 +25,7 @@ class RegistrationForm extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'name' => 'required',
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
@@ -37,8 +36,7 @@ class RegistrationForm extends FormRequest
     public function persist(){
         // create user
         $user = User::create(array(
-            'firstname' => request('firstname'),
-            'lastname' => request('lastname'),
+            'name' => request('name'),
             'username' => ucfirst(request('username')),
             'email' => request('email'),
             'password' => bcrypt(request('password')),

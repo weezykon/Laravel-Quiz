@@ -17,22 +17,22 @@ class SigninController extends Controller
     }
 
     public function create(){
-       // Authenticate user
-        if(!User::where('username', request('username'))->exists()){
-            session()->flash('message','User Does not exist');
-            return back();
-        }
-        // Check Password
-   		if (! auth()->attempt(request(['username','password']))){
-            session()->flash('message','Wrong Password. Try Again');
-            return back();
+      // Authenticate user
+      if(!User::where('email', request('email'))->exists()){
+        session()->flash('message','User Does not exist');
+        return back();
+      }
+      // Check Password
+   		if (! auth()->attempt(request(['email','password']))){
+        session()->flash('message','Wrong Password. Try Again');
+        return back();
    		}
    		// Checks if user is an admin
-        if (Auth::user()->role == 'admin') {
-          return redirect('/');
-        }else{
-          return redirect('/questions');
-        }
+      if (Auth::user()->role == 'admin') {
+        return redirect('/');
+      }else{
+        return redirect('/question');
+      }
    	}
     
     public function destroy(){

@@ -14,16 +14,18 @@
                     {{ csrf_field() }}
                     <h3>Great to see you again!</h3>
                     <div class="form-group">
-                        <input placeholder="Username" type="text" class="form-control" required="">
+                        <input placeholder="Email" name="email" type="text" class="form-control" required="">
                     </div>
                     <div class="form-group">
-                        <input placeholder="Password" type="password" class="form-control" required="">
+                        <input placeholder="Password" name="password" type="password" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn-green">Login</button>
                     </div>
                 </form>
-                <h4><a href="/register" class="forgot">Create Account?</a></h4>
+                <h4><a href="/register" class="forgot">Create Account?</a>
+                    <br/> <a href="{{ url('/auth/facebook') }}" class="btn btn-facebook"><i class="fa fa-facebook"></i> Sign in Via Facebook</a>
+                </h4>
             </div>
         </div>
     </body>

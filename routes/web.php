@@ -20,3 +20,12 @@ Route::post('/login', 'SigninController@create');
 Route::post('/checkusername','SignupController@checkusername');
 Route::post('/checkemail','SignupController@checkemail');
 Route::get('/logout', 'SigninController@destroy');
+Route::get('auth/{provider}', 'AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'AuthController@handleProviderCallback');
+
+// Other
+Route::post('/adduser','HomeController@adduser');
+Route::get('/questions', 'QuestionsController@index')->name('questions');
+Route::post('/questions', 'QuestionsController@create');
+Route::post('/answer', 'QuestionsController@answer');
+Route::get('/delete/{id}', 'QuestionsController@delete');
